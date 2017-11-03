@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
 
 class ViewController: UIViewController {
     
@@ -15,7 +17,7 @@ class ViewController: UIViewController {
     
     
 
-    var seconds = 1500
+    var seconds = 15
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
@@ -82,6 +84,8 @@ class ViewController: UIViewController {
         if seconds < 1 {
             timer.invalidate()
             // TODO: Send alert to inform time is up
+            AudioServicesPlaySystemSound(SystemSoundID(1304))
+            createAlert(title: "Alert", message: "You've finished!")
         } else {
             seconds -= 1
             timerLabel.text = timeString(time: TimeInterval(seconds))
@@ -98,6 +102,17 @@ class ViewController: UIViewController {
         
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
+    
+    // MARK: Show an alert
+    func createAlert(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+
 
 }
 
