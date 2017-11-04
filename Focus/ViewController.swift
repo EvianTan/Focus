@@ -12,29 +12,36 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    // MARK: Connect timeLable
-    @IBOutlet weak var timerLabel: UILabel!
-    
-    
-
     var seconds = 15
     var timer = Timer()
     var isTimerRunning = false
     var resumeTapped = false
     
+    // MARK: Connect timeLable
+    @IBOutlet weak var timerLabel: UILabel!
     
-    // MARK: start button action
+    
+    // MARK: Slider button
+    @IBOutlet weak var sliderOutlet: UISlider!
+    @IBAction func timerSlider(_ sender: UISlider) {
+        seconds = Int(sender.value)
+        timerLabel.text = timeString(time: TimeInterval(seconds))
+    }
+    
+    
+    // MARK: start button
+    @IBOutlet weak var startButton: UIButton!
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if isTimerRunning == false {
             runTimer()
             self.startButton.isEnabled = false
+            sliderOutlet.isEnabled = false
         }
     }
     
-    @IBOutlet weak var startButton: UIButton!
     
-    
-    // MARK: pause button action
+    // MARK: pause button
+    @IBOutlet weak var pauseButton: UIButton!
     @IBAction func pauseButtonTapped(_ sender: UIButton) {
         if self.resumeTapped == false {
             timer.invalidate()
@@ -47,29 +54,26 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var pauseButton: UIButton!
     
     // MARK: reset button action
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
         seconds = 1500
+        sliderOutlet.value = 1500
         timerLabel.text = timeString(time: TimeInterval(seconds))
         
         isTimerRunning = false
+        
         pauseButton.isEnabled = false
         startButton.isEnabled = true
+        sliderOutlet.isEnabled = true
+        
+        //runTimer()
+        resumeTapped = false
+        pauseButton.setTitle("Pause", for: .normal)
     
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        pauseButton.isEnabled = false
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: run time
     func runTimer() {
@@ -78,6 +82,7 @@ class ViewController: UIViewController {
         isTimerRunning = true
         pauseButton.isEnabled = true
     }
+    
     
     // MARK: Update the time
     @objc func updateTimer() {
@@ -93,6 +98,7 @@ class ViewController: UIViewController {
         
     }
     
+    
     // MARK: show the time by hour, minute, second
     func timeString(time:TimeInterval) -> String {
         
@@ -103,6 +109,7 @@ class ViewController: UIViewController {
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
     
+    
     // MARK: Show an alert
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -111,6 +118,20 @@ class ViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        pauseButton.isEnabled = false
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
     
 
 
