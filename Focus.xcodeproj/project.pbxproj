@@ -12,6 +12,7 @@
 		186D676E1FAAA6530011FB53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186D676C1FAAA6530011FB53 /* Main.storyboard */; };
 		186D67701FAAA6530011FB53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186D676F1FAAA6530011FB53 /* Assets.xcassets */; };
 		186D67731FAAA6530011FB53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186D67711FAAA6530011FB53 /* LaunchScreen.storyboard */; };
+		18BC6A8C1FAEAC3A00FB6C38 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18BC6A8B1FAEAC3A00FB6C38 /* silence.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		186D676F1FAAA6530011FB53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186D67721FAAA6530011FB53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186D67741FAAA6530011FB53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18BC6A8B1FAEAC3A00FB6C38 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				186D676F1FAAA6530011FB53 /* Assets.xcassets */,
 				186D67711FAAA6530011FB53 /* LaunchScreen.storyboard */,
 				186D67741FAAA6530011FB53 /* Info.plist */,
+				18BC6A8B1FAEAC3A00FB6C38 /* silence.mp3 */,
 			);
 			path = Focus;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BC6A8C1FAEAC3A00FB6C38 /* silence.mp3 in Resources */,
 				186D67731FAAA6530011FB53 /* LaunchScreen.storyboard in Resources */,
 				186D67701FAAA6530011FB53 /* Assets.xcassets in Resources */,
 				186D676E1FAAA6530011FB53 /* Main.storyboard in Resources */,

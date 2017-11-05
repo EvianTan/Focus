@@ -121,19 +121,40 @@ class ViewController: UIViewController {
     
     
     
+    // MARK: Play audio in background
+    var player:AVAudioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         pauseButton.isEnabled = false
+        
+        // MARK: Play audio in background
+        do{
+            let audioPath = Bundle.main.path(forResource: "silence", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            //PROCESS
+        }
+        
+        let session = AVAudioSession.sharedInstance()
+        
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch
+        {
+            
+        }
+        player.play()
+        player.numberOfLoops = -1
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-
 
 }
 
