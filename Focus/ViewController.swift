@@ -47,15 +47,18 @@ class ViewController: UIViewController {
             timer.invalidate()
             self.resumeTapped = true
             self.pauseButton.setTitle("Resume", for: .normal)
+            resetButton.isHidden = false
         } else {
             runTimer()
             self.resumeTapped = false
             self.pauseButton.setTitle("Pause", for: .normal)
+            resetButton.isHidden = true
         }
     }
     
     
     // MARK: reset button action
+    @IBOutlet weak var resetButton: UIButton!
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
         seconds = 1500
@@ -67,6 +70,8 @@ class ViewController: UIViewController {
         pauseButton.isEnabled = false
         startButton.isEnabled = true
         sliderOutlet.isEnabled = true
+        
+        
         
         //runTimer()
         resumeTapped = false
@@ -127,6 +132,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pauseButton.isEnabled = false
+        resetButton.isHidden = true
         
         // MARK: Play audio in background
         do{
