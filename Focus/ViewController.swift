@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     var seconds = 15
     var timer = Timer()
     var isTimerRunning = false
-    var resumeTapped = false
     
     // MARK: Connect timeLable
     @IBOutlet weak var timerLabel: UILabel!
@@ -34,25 +33,16 @@ class ViewController: UIViewController {
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if isTimerRunning == false {
             runTimer()
-            self.startButton.isEnabled = false
-            sliderOutlet.isEnabled = false
-        }
-    }
-    
-    
-    // MARK: pause button
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBAction func pauseButtonTapped(_ sender: UIButton) {
-        if self.resumeTapped == false {
-            timer.invalidate()
-            self.resumeTapped = true
-            self.pauseButton.setTitle("Resume", for: .normal)
-            resetButton.isHidden = false
-        } else {
-            runTimer()
-            self.resumeTapped = false
-            self.pauseButton.setTitle("Pause", for: .normal)
+            isTimerRunning = true
+            self.startButton.setTitle("pause", for: .normal)
             resetButton.isHidden = true
+            sliderOutlet.isEnabled = false
+        } else {
+            timer.invalidate()
+            isTimerRunning = false
+            self.startButton.setTitle("start", for: .normal)
+            resetButton.isHidden = false
+            sliderOutlet.isEnabled = true
         }
     }
     
@@ -66,17 +56,6 @@ class ViewController: UIViewController {
         timerLabel.text = timeString(time: TimeInterval(seconds))
         
         isTimerRunning = false
-        
-        pauseButton.isEnabled = false
-        startButton.isEnabled = true
-        sliderOutlet.isEnabled = true
-        
-        
-        
-        //runTimer()
-        resumeTapped = false
-        pauseButton.setTitle("Pause", for: .normal)
-    
     }
     
     
@@ -85,7 +64,6 @@ class ViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
         
         isTimerRunning = true
-        pauseButton.isEnabled = true
     }
     
     
@@ -100,7 +78,6 @@ class ViewController: UIViewController {
             seconds -= 1
             timerLabel.text = timeString(time: TimeInterval(seconds))
         }
-        
     }
     
     
@@ -131,15 +108,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pauseButton.isEnabled = false
         resetButton.isHidden = true
         
         // MARK: Play audio in background
-        do{
+        do {
             let audioPath = Bundle.main.path(forResource: "silence", ofType: "mp3")
             try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
         }
-        catch{
+        catch {
             //PROCESS
         }
         
@@ -148,13 +124,9 @@ class ViewController: UIViewController {
         do {
             try session.setCategory(AVAudioSessionCategoryPlayback)
         }
-        catch
-        {
-            
-        }
+        catch { }
         player.play()
         player.numberOfLoops = -1
-        
     }
 
     override func didReceiveMemoryWarning() {
