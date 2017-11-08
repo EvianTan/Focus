@@ -12,19 +12,38 @@ import AudioToolbox
 
 class ViewController: UIViewController {
     
-    var seconds = 15
+    var seconds = 1500
     var timer = Timer()
     var isTimerRunning = false
     
-    // MARK: Connect timeLable
-    @IBOutlet weak var timerLabel: UILabel!
     
+    // MARK: date picker
+    @IBOutlet weak var timeField: UITextField!
     
-    // MARK: Slider button
-    @IBOutlet weak var sliderOutlet: UISlider!
-    @IBAction func timerSlider(_ sender: UISlider) {
-        seconds = Int(sender.value)
-        timerLabel.text = timeString(time: TimeInterval(seconds))
+    let picker = UIDatePicker()
+    
+    func createDatePicker() {
+        // toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        
+        timeField.inputAccessoryView = toolbar
+        timeField.inputView = picker
+        
+        // format picker for time
+        picker.datePickerMode = .countDownTimer
+        picker.minuteInterval = 1
+        picker.countDownDuration = 1500
+    }
+    
+    @objc func donePressed() {
+        seconds = Int(picker.countDownDuration)
+        timeField.text = timeString(time: TimeInterval(seconds))
+        self.view.endEditing(true)
     }
     
     
@@ -34,15 +53,15 @@ class ViewController: UIViewController {
         if isTimerRunning == false {
             runTimer()
             isTimerRunning = true
-            self.startButton.setTitle("pause", for: .normal)
+            //self.startButton.setTitle("pause", for: .normal)
+            self.startButton.setImage(UIImage(named: "pause.png"), for: .normal)
             resetButton.isHidden = true
-            sliderOutlet.isEnabled = false
         } else {
             timer.invalidate()
             isTimerRunning = false
-            self.startButton.setTitle("start", for: .normal)
+            //self.startButton.setTitle("start", for: .normal)
+            self.startButton.setImage(UIImage(named: "start.png"), for: .normal)
             resetButton.isHidden = false
-            sliderOutlet.isEnabled = true
         }
     }
     
@@ -52,8 +71,7 @@ class ViewController: UIViewController {
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
         seconds = 1500
-        sliderOutlet.value = 1500
-        timerLabel.text = timeString(time: TimeInterval(seconds))
+        timeField.text = timeString(time: TimeInterval(seconds))
         
         isTimerRunning = false
     }
@@ -74,9 +92,13 @@ class ViewController: UIViewController {
             // TODO: Send alert to inform time is up
             AudioServicesPlaySystemSound(SystemSoundID(1304))
             createAlert(title: "Alert", message: "You've finished!")
+            
+            startButton.setImage(UIImage(named: "start.png"), for: .normal)
+            resetButton.isHidden = false
+            
         } else {
             seconds -= 1
-            timerLabel.text = timeString(time: TimeInterval(seconds))
+            timeField.text = timeString(time: TimeInterval(seconds))
         }
     }
     
@@ -109,6 +131,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         resetButton.isHidden = true
+        
+        createDatePicker()
         
         // MARK: Play audio in background
         do {
