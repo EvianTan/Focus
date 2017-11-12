@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import AVFoundation
 import AudioToolbox
 
@@ -112,8 +113,9 @@ class ViewController: UIViewController {
     @objc func updateTimer() {
         if seconds < 1 {
             timer.invalidate()
-            // TODO: Send alert to inform time is up
             AudioServicesPlaySystemSound(SystemSoundID(alertSound))
+            
+            // Send an inner alert to inform time is up
             createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
@@ -122,6 +124,15 @@ class ViewController: UIViewController {
             
             newAngleValue1 = 0
             
+            // Send a locoal notification
+            let content = UNMutableNotificationContent()
+            content.title = "You've finished!"
+            content.subtitle = "Time is up!"
+            content.body = "You've focused \(Int(maxCount/60)) minutes!"
+            
+            let request = UNNotificationRequest(identifier: "timeDone", content: content, trigger:nil)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         } else {
             seconds -= 1
             timeField.text = timeString(time: TimeInterval(seconds))
@@ -231,6 +242,8 @@ class ViewController: UIViewController {
         createDatePicker()
         
         //oProgressView2.setProgress(newAngleValue1, animated: true)
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
        
         
         // MARK: Play audio in background
