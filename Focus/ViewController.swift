@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     var timer = Timer()
     var isTimerRunning = false
     
+    var maxCount = 1500
+    //var newAngleValue = 0
+    var newAngleValue1 = 0.0
+    
     
     // MARK: date picker
     @IBOutlet weak var timeField: UITextField!
@@ -44,7 +48,15 @@ class ViewController: UIViewController {
         seconds = Int(picker.countDownDuration)
         timeField.text = timeString(time: TimeInterval(seconds))
         self.view.endEditing(true)
+        
+        maxCount = seconds
+        newAngleValue1 = 0
+        oProgressView2.setProgress(0, animated: true)
     }
+    
+    
+    // MARK: Circle progress bar
+    @IBOutlet weak var oProgressView2: OProgressView2!
     
     
     // MARK: start button
@@ -55,12 +67,15 @@ class ViewController: UIViewController {
             isTimerRunning = true
             //self.startButton.setTitle("pause", for: .normal)
             self.startButton.setImage(UIImage(named: "pause.png"), for: .normal)
+            timeField.isUserInteractionEnabled = false
             resetButton.isHidden = true
         } else {
             timer.invalidate()
+            //cicularProgressView.pauseAnimation()
             isTimerRunning = false
             //self.startButton.setTitle("start", for: .normal)
             self.startButton.setImage(UIImage(named: "start.png"), for: .normal)
+            timeField.isUserInteractionEnabled = true
             resetButton.isHidden = false
         }
     }
@@ -71,9 +86,13 @@ class ViewController: UIViewController {
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         timer.invalidate()
         seconds = 1500
+        maxCount = 1500
         timeField.text = timeString(time: TimeInterval(seconds))
         
         isTimerRunning = false
+        
+        newAngleValue1 = 0
+        oProgressView2.setProgress(0, animated: true)
     }
     
     
@@ -94,11 +113,17 @@ class ViewController: UIViewController {
             createAlert(title: "Alert", message: "You've finished!")
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
+            timeField.isUserInteractionEnabled = true
             resetButton.isHidden = false
+            
+            newAngleValue1 = 0
             
         } else {
             seconds -= 1
             timeField.text = timeString(time: TimeInterval(seconds))
+            
+            newAngleValue1 += 100.0/Double(maxCount)
+            oProgressView2.setProgress(newAngleValue1, animated: true)
         }
     }
     
@@ -134,6 +159,9 @@ class ViewController: UIViewController {
         
         createDatePicker()
         
+        //oProgressView2.setProgress(newAngleValue1, animated: true)
+       
+        
         // MARK: Play audio in background
         do {
             let audioPath = Bundle.main.path(forResource: "silence", ofType: "mp3")
@@ -153,6 +181,7 @@ class ViewController: UIViewController {
         player.numberOfLoops = -1
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
