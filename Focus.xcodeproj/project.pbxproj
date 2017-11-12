@@ -13,6 +13,7 @@
 		186D676E1FAAA6530011FB53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186D676C1FAAA6530011FB53 /* Main.storyboard */; };
 		186D67701FAAA6530011FB53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186D676F1FAAA6530011FB53 /* Assets.xcassets */; };
 		186D67731FAAA6530011FB53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186D67711FAAA6530011FB53 /* LaunchScreen.storyboard */; };
+		188957661FB8932B00D7B005 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 188957651FB8932B00D7B005 /* exit.png */; };
 		18BC6A8C1FAEAC3A00FB6C38 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18BC6A8B1FAEAC3A00FB6C38 /* silence.mp3 */; };
 		18F64FCB1FB263B800FB4ACB /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F64FCA1FB263B700FB4ACB /* start.png */; };
 		18F64FCD1FB263BE00FB4ACB /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F64FCC1FB263BE00FB4ACB /* pause.png */; };
@@ -29,6 +30,7 @@
 		186D676F1FAAA6530011FB53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186D67721FAAA6530011FB53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186D67741FAAA6530011FB53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		188957651FB8932B00D7B005 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
 		18BC6A8B1FAEAC3A00FB6C38 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		18F64FCA1FB263B700FB4ACB /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		18F64FCC1FB263BE00FB4ACB /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				18F64FCA1FB263B700FB4ACB /* start.png */,
 				18F64FCC1FB263BE00FB4ACB /* pause.png */,
 				18F64FCE1FB265D800FB4ACB /* reset.png */,
+				188957651FB8932B00D7B005 /* exit.png */,
 				18557AC31FB79380008BBC70 /* KDCircularProgress.swift */,
 				18FCD79E1FB7EDBB00C585A1 /* OProgressView2.swift */,
 			);
@@ -151,6 +154,7 @@
 				186D67731FAAA6530011FB53 /* LaunchScreen.storyboard in Resources */,
 				18F64FCD1FB263BE00FB4ACB /* pause.png in Resources */,
 				18F64FCB1FB263B800FB4ACB /* start.png in Resources */,
+				188957661FB8932B00D7B005 /* exit.png in Resources */,
 				186D67701FAAA6530011FB53 /* Assets.xcassets in Resources */,
 				186D676E1FAAA6530011FB53 /* Main.storyboard in Resources */,
 			);

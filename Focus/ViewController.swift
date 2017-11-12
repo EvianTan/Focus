@@ -17,8 +17,9 @@ class ViewController: UIViewController {
     var isTimerRunning = false
     
     var maxCount = 1500
-    //var newAngleValue = 0
     var newAngleValue1 = 0.0
+    
+    var alertSound = 1304
     
     
     // MARK: date picker
@@ -84,7 +85,12 @@ class ViewController: UIViewController {
     // MARK: reset button action
     @IBOutlet weak var resetButton: UIButton!
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        timer.invalidate()
+        
+        createAlert1(title: "Alert", message: "Do you want to keep the data?")
+        
+        //timer.invalidate()
+        
+        /***
         seconds = 1500
         maxCount = 1500
         timeField.text = timeString(time: TimeInterval(seconds))
@@ -93,6 +99,8 @@ class ViewController: UIViewController {
         
         newAngleValue1 = 0
         oProgressView2.setProgress(0, animated: true)
+         ***/
+        
     }
     
     
@@ -109,7 +117,7 @@ class ViewController: UIViewController {
         if seconds < 1 {
             timer.invalidate()
             // TODO: Send alert to inform time is up
-            AudioServicesPlaySystemSound(SystemSoundID(1304))
+            AudioServicesPlaySystemSound(SystemSoundID(alertSound))
             createAlert(title: "Alert", message: "You've finished!")
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
@@ -139,11 +147,59 @@ class ViewController: UIViewController {
     }
     
     
-    // MARK: Show an alert
+    // MARK: Switch for sound
+    @IBAction func `switch`(_ sender: UISwitch) {
+        if (sender.isOn == true) {
+            alertSound = 1304
+        }
+        else
+        {
+            alertSound = 4095
+        }
+    }
+    
+    
+    // MARK: Show an alert for ending
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    // MARK: Show an alert for reset
+    func createAlert1(title:String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Keep it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
+            
+            self.seconds = 1500
+            self.maxCount = 1500
+            self.timeField.text = self.timeString(time: TimeInterval(self.seconds))
+            
+            self.isTimerRunning = false
+            
+            self.newAngleValue1 = 0
+            self.oProgressView2.setProgress(0, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Discard it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
+            
+            self.seconds = 1500
+            self.maxCount = 1500
+            self.timeField.text = self.timeString(time: TimeInterval(self.seconds))
+            
+            self.isTimerRunning = false
+            
+            self.newAngleValue1 = 0
+            self.oProgressView2.setProgress(0, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
+        }))
         
         self.present(alert, animated: true, completion: nil)
     }
