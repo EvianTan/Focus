@@ -85,11 +85,8 @@ class ViewController: UIViewController {
     // MARK: reset button action
     @IBOutlet weak var resetButton: UIButton!
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        
         createAlert1(title: "Alert", message: "Do you want to keep the data?")
-        
         //timer.invalidate()
-        
         /***
         seconds = 1500
         maxCount = 1500
@@ -100,7 +97,6 @@ class ViewController: UIViewController {
         newAngleValue1 = 0
         oProgressView2.setProgress(0, animated: true)
          ***/
-        
     }
     
     
@@ -118,7 +114,7 @@ class ViewController: UIViewController {
             timer.invalidate()
             // TODO: Send alert to inform time is up
             AudioServicesPlaySystemSound(SystemSoundID(alertSound))
-            createAlert(title: "Alert", message: "You've finished!")
+            createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
             timeField.isUserInteractionEnabled = true
@@ -160,14 +156,33 @@ class ViewController: UIViewController {
     
     
     // MARK: Show an alert for ending
+    var counter = 30
+    var timer1 = Timer()
+    var alert: UIAlertController!
+    
     func createAlert(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in self.alert.dismiss(animated: true, completion: nil)}))
         
-        self.present(alert, animated: true, completion: nil)
+        //self.present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true){
+            self.timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.decrease), userInfo: nil, repeats: true)
+        }
     }
     
+    @objc func decrease() {
+        //var minutes: Int
+        var seconds1 = 30
+        if(counter > 0) {
+            self.counter -= 1
+            alert.message = String("👁 \(counter) s")
+        }
+        else{
+            dismiss(animated: true, completion: nil)
+            timer1.invalidate()
+        }
+    }
     
     
     // MARK: Show an alert for reset
