@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import AVFoundation
 import AudioToolbox
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class ViewController: UIViewController {
     var newAngleValue1 = 0.0
     
     var alertSound = 1304
+    
+    var ref:DatabaseReference?
     
     
     // MARK: date picker
@@ -115,6 +118,10 @@ class ViewController: UIViewController {
             timer.invalidate()
             AudioServicesPlaySystemSound(SystemSoundID(alertSound))
             
+            // write the focus time into firebase database
+            ref = Database.database().reference()
+            ref?.child("list").childByAutoId().setValue(Int(maxCount/60))
+            
             // Send an inner alert to inform time is up
             createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
             
@@ -201,6 +208,9 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Keep it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
+            
+            self.ref = Database.database().reference()
+            self.ref?.child("list").childByAutoId().setValue(Int((self.maxCount - self.seconds)/60))
             
             self.seconds = 1500
             self.maxCount = 1500
