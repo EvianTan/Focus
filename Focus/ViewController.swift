@@ -25,6 +25,16 @@ class ViewController: UIViewController {
     
     var ref:DatabaseReference?
     
+    var hour1 = 0
+    var minute1 = 0
+    
+    var hour2 = 0
+    var minute2 = 0
+    
+    var hour3 = 0
+    var minute3 = 0
+    
+    var status = 0 //status for record the start time
     
     // MARK: date picker
     @IBOutlet weak var timeField: UITextField!
@@ -68,6 +78,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBAction func startButtonTapped(_ sender: UIButton) {
         if isTimerRunning == false {
+            
+            if status == 0 {
+                // start time
+                hour1 = Calendar.current.component(.hour, from: Date())
+                minute1 = Calendar.current.component(.minute, from: Date())
+            }
+            status = 1
+            
             runTimer()
             isTimerRunning = true
             //self.startButton.setTitle("pause", for: .normal)
@@ -101,6 +119,7 @@ class ViewController: UIViewController {
         newAngleValue1 = 0
         oProgressView2.setProgress(0, animated: true)
          ***/
+        status = 0
     }
     
     
@@ -118,16 +137,22 @@ class ViewController: UIViewController {
             timer.invalidate()
             AudioServicesPlaySystemSound(SystemSoundID(alertSound))
             
+            // end time
+            hour2 = Calendar.current.component(.hour, from: Date())
+            minute2 = Calendar.current.component(.minute, from: Date())
+            
+            status = 0
+            
             // write the focus time into firebase database
             ref = Database.database().reference()
-            ref?.child("list").childByAutoId().setValue(Int(maxCount/60))
+            ref?.child("list").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
             
             // Send an inner alert to inform time is up
             createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
             timeField.isUserInteractionEnabled = true
-            resetButton.isHidden = false
+            resetButton.isHidden = true
             
             newAngleValue1 = 0
             
@@ -209,8 +234,12 @@ class ViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Keep it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
             
+            // keep time data
+            self.hour3 = Calendar.current.component(.hour, from: Date())
+            self.minute3 = Calendar.current.component(.minute, from: Date())
+            
             self.ref = Database.database().reference()
-            self.ref?.child("list").childByAutoId().setValue(Int((self.maxCount - self.seconds)/60))
+            self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
             
             self.seconds = 1500
             self.maxCount = 1500
@@ -220,6 +249,8 @@ class ViewController: UIViewController {
             
             self.newAngleValue1 = 0
             self.oProgressView2.setProgress(0, animated: true)
+            
+            self.status = 0
         }))
         
         alert.addAction(UIAlertAction(title: "Discard it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
@@ -232,6 +263,8 @@ class ViewController: UIViewController {
             
             self.newAngleValue1 = 0
             self.oProgressView2.setProgress(0, animated: true)
+            
+            self.status = 0
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
