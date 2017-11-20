@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     var minute3 = 0
     
     var status = 0 //status for record the start time
+
     
     // MARK: date picker
     @IBOutlet weak var timeField: UITextField!
@@ -152,7 +153,7 @@ class ViewController: UIViewController {
             
             startButton.setImage(UIImage(named: "start.png"), for: .normal)
             timeField.isUserInteractionEnabled = true
-            resetButton.isHidden = true
+            resetButton.isHidden = false
             
             newAngleValue1 = 0
             
@@ -239,7 +240,7 @@ class ViewController: UIViewController {
             self.minute3 = Calendar.current.component(.minute, from: Date())
             
             self.ref = Database.database().reference()
-            self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
+            self.ref?.child("list").childByAutoId().setValue(Int((self.maxCount - self.seconds)/60))
             
             self.seconds = 1500
             self.maxCount = 1500
@@ -249,8 +250,6 @@ class ViewController: UIViewController {
             
             self.newAngleValue1 = 0
             self.oProgressView2.setProgress(0, animated: true)
-            
-            self.status = 0
         }))
         
         alert.addAction(UIAlertAction(title: "Discard it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
@@ -263,8 +262,6 @@ class ViewController: UIViewController {
             
             self.newAngleValue1 = 0
             self.oProgressView2.setProgress(0, animated: true)
-            
-            self.status = 0
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
