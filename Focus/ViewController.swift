@@ -156,6 +156,7 @@ class ViewController: UIViewController {
             resetButton.isHidden = false
             
             newAngleValue1 = 0
+            oProgressView2.setProgress(0, animated: true)
             
             // Send a locoal notification
             let content = UNMutableNotificationContent()
@@ -240,7 +241,7 @@ class ViewController: UIViewController {
             self.minute3 = Calendar.current.component(.minute, from: Date())
             
             self.ref = Database.database().reference()
-            self.ref?.child("list").childByAutoId().setValue(Int((self.maxCount - self.seconds)/60))
+            self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
             
             self.seconds = 1500
             self.maxCount = 1500
