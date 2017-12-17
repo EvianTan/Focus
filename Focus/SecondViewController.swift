@@ -8,10 +8,48 @@
 
 import UIKit
 import FirebaseDatabase
+import Charts
 
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     @IBOutlet weak var myTableView: UITableView!
+    
+    @IBOutlet weak var barChartView: BarChartView!
+    
+    var timeBars: [String]!
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        var dataEntries: [BarChartDataEntry] = []
+        var counter = 0.0
+        
+        for i in 0..<dataPoints.count {
+            counter += 1.0
+            let dataEntry = BarChartDataEntry(x: counter, y:values[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(values:dataEntries, label: "Focus")
+        let chartData = BarChartData()
+        chartData.addDataSet(chartDataSet)
+        barChartView.data = chartData
+        
+        //barChartView.groupBars(fromX: 0.0, groupSpace: 0.0, barSpace: 0.0)
+        
+        barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.drawLabelsEnabled = false
+        barChartView.leftAxis.drawLabelsEnabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        
+        chartData.setDrawValues(false)
+        barChartView.chartDescription?.text = ""
+        //chartDataSet.colors = [UIColor.gray]
+        barChartView.animate(xAxisDuration: 2.0)
+    }
+    
+    
+    
     
     //let myList = ["milk", "data", "code"]
     
@@ -43,6 +81,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.myTableView.reloadData()
             }
         })
+        
+        self.view.backgroundColor = UIColor.white
+        
+        //barChartView.noDataText = "You need to provide data for the chart."
+        
+        timeBars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+        let focusStatus = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0]
+        
+        setChart(dataPoints:timeBars, values: focusStatus)
     }
 
     override func didReceiveMemoryWarning() {
