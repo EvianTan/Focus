@@ -14,21 +14,27 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var myTableView: UITableView!
     
+    
+    @IBOutlet weak var uiSlider: UISlider!
+    
+    
+    
     @IBOutlet weak var barChartView: BarChartView!
     
     var timeBars: [String]!
     
     func setChart(dataPoints: [String], values: [Double]) {
+        
         var dataEntries: [BarChartDataEntry] = []
         var counter = 0.0
         
         for i in 0..<dataPoints.count {
             counter += 1.0
-            let dataEntry = BarChartDataEntry(x: counter, y:values[i])
+            let dataEntry = BarChartDataEntry(x: counter/4, y:values[i])
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(values:dataEntries, label: "Focus")
+        let chartDataSet = BarChartDataSet(values:dataEntries, label: "Focus:210min")
         let chartData = BarChartData()
         chartData.addDataSet(chartDataSet)
         barChartView.data = chartData
@@ -84,12 +90,21 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.view.backgroundColor = UIColor.white
         
+        
+        uiSlider.value = 18
+        uiSlider.maximumTrackTintColor = UIColor.white
+        uiSlider.minimumTrackTintColor = UIColor.white
+        uiSlider.setThumbImage(UIImage(named: "pin.png"), for: .normal)
+        uiSlider.setThumbImage(UIImage(named: "pin.png"), for: .highlighted)
+        
         //barChartView.noDataText = "You need to provide data for the chart."
         
-        timeBars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-        let focusStatus = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0]
+        //timeBars = ["0", "0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "21.5", "22", "22.5", "23", "23.5", "0", "0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "21.5", "22", "22.5", "23", "23.5"]
+        timeBars = ["0", "0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "21.5", "22", "22.5", "23", "23.5", "0", "0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "21.5", "22", "22.5", "23", "23.5"]
+        let focusStatus = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         
-        setChart(dataPoints:timeBars, values: focusStatus)
+        //setChart(dataPoints:timeBars, values: focusStatus)
+        setChart(dataPoints: timeBars, values: focusStatus)
     }
 
     override func didReceiveMemoryWarning() {

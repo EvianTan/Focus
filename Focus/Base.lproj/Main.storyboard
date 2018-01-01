@@ -28,7 +28,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lmk-r5-OXy" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="144" width="343" height="61"/>
+                                <rect key="frame" x="16" y="151" width="359" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -40,6 +40,10 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="9Th-bN-ihd"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-4T-CYg">
+                                <rect key="frame" x="14" y="122" width="363" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ncr-Fo-2Li"/>
@@ -47,6 +51,7 @@
                     <connections>
                         <outlet property="barChartView" destination="lmk-r5-OXy" id="LPR-fU-uBK"/>
                         <outlet property="myTableView" destination="cii-7T-sij" id="Qub-XQ-v5E"/>
+                        <outlet property="uiSlider" destination="hXU-4T-CYg" id="fB3-O7-XRs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PG-Q1-OQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
