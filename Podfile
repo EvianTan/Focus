@@ -8,6 +8,7 @@ target 'Focus' do
   # Pods for Focus
 
 	pod 'Firebase/Core'
+	pod 'Firebase/Auth'
 	pod 'Firebase/Database'
 
 	pod 'Charts'

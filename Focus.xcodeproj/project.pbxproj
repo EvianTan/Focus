@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180394782002D97800A6EA2A /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180394772002D97800A6EA2A /* ThirdViewController.swift */; };
 		18557AC41FB79381008BBC70 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18557AC31FB79380008BBC70 /* KDCircularProgress.swift */; };
 		186D67691FAAA6530011FB53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D67681FAAA6530011FB53 /* AppDelegate.swift */; };
 		186D676B1FAAA6530011FB53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D676A1FAAA6530011FB53 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180394772002D97800A6EA2A /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		18557AC31FB79380008BBC70 /* KDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDCircularProgress.swift; sourceTree = "<group>"; };
 		186D67651FAAA6530011FB53 /* Focus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		186D67681FAAA6530011FB53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				186D676C1FAAA6530011FB53 /* Main.storyboard */,
 				186D676A1FAAA6530011FB53 /* ViewController.swift */,
 				18DAA5681FC36F0E00B39E65 /* SecondViewController.swift */,
+				180394772002D97800A6EA2A /* ThirdViewController.swift */,
 				186D676F1FAAA6530011FB53 /* Assets.xcassets */,
 				186D67711FAAA6530011FB53 /* LaunchScreen.storyboard */,
 				186D67741FAAA6530011FB53 /* Info.plist */,
@@ -209,6 +212,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Focus/Pods-Focus-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -216,6 +220,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -269,6 +274,7 @@
 				18557AC41FB79381008BBC70 /* KDCircularProgress.swift in Sources */,
 				186D676B1FAAA6530011FB53 /* ViewController.swift in Sources */,
 				18DAA5691FC36F0E00B39E65 /* SecondViewController.swift in Sources */,
+				180394782002D97800A6EA2A /* ThirdViewController.swift in Sources */,
 				186D67691FAAA6530011FB53 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6J6QYUV53Y;
 				INFOPLIST_FILE = Focus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eviantan.Focus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6J6QYUV53Y;
 				INFOPLIST_FILE = Focus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eviantan.Focus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
