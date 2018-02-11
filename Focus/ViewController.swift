@@ -61,8 +61,10 @@ class ViewController: UIViewController {
     }
     
     @objc func donePressed() {
+        //timeField.backgroundColor = UIColor.clear
         seconds = Int(picker.countDownDuration)
         timeField.text = timeString(time: TimeInterval(seconds))
+        //timeField.textColor = UIColor.black
         self.view.endEditing(true)
         
         maxCount = seconds

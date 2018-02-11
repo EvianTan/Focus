@@ -6,8 +6,8 @@ import UIKit
         //进度条宽度
         static let lineWidth: CGFloat = 10
         //进度槽颜色
-        static let trackColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0,
-            alpha: 1)
+        static let trackColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0,
+            alpha: 0)
         //进度条颜色
         static let progressColoar = UIColor.orange
     }
