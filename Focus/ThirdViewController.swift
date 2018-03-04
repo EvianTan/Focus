@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class ThirdViewController: UIViewController, UITextFieldDelegate {
@@ -23,11 +24,11 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
         
         // Check the bool and set the button and labels
         if isSignIn {
-            actionButton.backgroundColor = UIColor.clear
+            //actionButton.backgroundColor = UIColor.clear
             actionButton.setTitle("Log in", for: .normal)
         }
         else {
-            actionButton.backgroundColor = UIColor.clear
+            //actionButton.backgroundColor = UIColor.clear
             actionButton.setTitle("Sign up", for: .normal)
         }
     }
@@ -77,9 +78,11 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.actionButton.backgroundColor = UIColor.clear
+        
         self.view.backgroundColor = UIColor(red: 115/255.0, green: 140/255.0, blue: 199/255.0, alpha: 1)
         
-        let lineColor = UIColor(red:0.12, green:0.23, blue:0.35, alpha:1.0)
+        let lineColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
         self.emailText.setBottomLine(borderColor: lineColor)
         self.passwordText.setBottomLine(borderColor: lineColor)
         
