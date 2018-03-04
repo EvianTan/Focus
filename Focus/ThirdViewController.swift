@@ -9,10 +9,11 @@
 import UIKit
 import FirebaseAuth
 
-class ThirdViewController: UIViewController {
+class ThirdViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    
     
     var isSignIn:Bool = true
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -22,10 +23,12 @@ class ThirdViewController: UIViewController {
         
         // Check the bool and set the button and labels
         if isSignIn {
-            actionButton.setTitle("Sign In", for: .normal)
+            actionButton.backgroundColor = UIColor.clear
+            actionButton.setTitle("Log in", for: .normal)
         }
         else {
-            actionButton.setTitle("Register", for: .normal)
+            actionButton.backgroundColor = UIColor.clear
+            actionButton.setTitle("Sign up", for: .normal)
         }
     }
     
@@ -73,7 +76,22 @@ class ThirdViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.view.backgroundColor = UIColor(red: 115/255.0, green: 140/255.0, blue: 199/255.0, alpha: 1)
+        
+        let lineColor = UIColor(red:0.12, green:0.23, blue:0.35, alpha:1.0)
+        self.emailText.setBottomLine(borderColor: lineColor)
+        self.passwordText.setBottomLine(borderColor: lineColor)
+        
+        
+        //emailText.underlined()
+        //passwordText.underlined()
+        
+        self.emailText.delegate = self
+        self.passwordText.delegate = self
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -84,6 +102,20 @@ class ThirdViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // Hide keyboard when user touches outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    // Presses return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailText.resignFirstResponder()
+        passwordText.resignFirstResponder()
+        return (true)
     }
 
 
