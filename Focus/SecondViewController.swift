@@ -80,8 +80,17 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         ref = Database.database().reference()
-        
+        /**
         handle = ref?.child("list").observe(.childAdded, with: { (snapshot) in
+            if let item = snapshot.value as? String
+            {
+                self.myList.append(item)
+                self.myTableView.reloadData()
+            }
+        })
+        **/
+        let userID = Auth.auth().currentUser!.uid
+        handle = ref?.child("users").child(userID).child("Focus").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? String
             {
                 self.myList.append(item)

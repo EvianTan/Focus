@@ -10,7 +10,9 @@ import UIKit
 import UserNotifications
 import AVFoundation
 import AudioToolbox
+import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -148,7 +150,9 @@ class ViewController: UIViewController {
             
             // write the focus time into firebase database
             ref = Database.database().reference()
-            ref?.child("list").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+            //ref?.child("list").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+            let  userID = Auth.auth().currentUser!.uid
+            self.ref?.child("users").child(userID).child("Focus").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
             
             // Send an inner alert to inform time is up
             createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
@@ -243,7 +247,9 @@ class ViewController: UIViewController {
             self.minute3 = Calendar.current.component(.minute, from: Date())
             
             self.ref = Database.database().reference()
-            self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
+            //self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
+            let  userID = Auth.auth().currentUser!.uid
+            self.ref?.child("users").child(userID).child("Focus").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
             
             self.seconds = 1500
             self.maxCount = 1500

@@ -57,9 +57,21 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
             }
             // Sign up user
             else {
+                
+                let ref: DatabaseReference!
+                ref = Database.database().reference()
+                
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!, completion: { (user, error) in
                     if user != nil {
                         self.performSegue(withIdentifier: "segue1", sender: self)
+                        
+                        // following method is a add user's  more details
+                        ref.child("users").child(user!.uid).setValue(["Password": self.passwordText.text!, "Email": self.emailText.text!, "Firstname": "Yiyun", "Lastname": "Tan", "Focus": "30 min" ])
+                        ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { snapshot in
+                            let postDict = snapshot.value as! [String : AnyObject]
+                            print("Error is = \(postDict)")
+                        })
+                    
                     }
                     else {
                         if let myError = error?.localizedDescription {
