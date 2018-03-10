@@ -135,6 +135,7 @@ class ViewController: UIViewController {
         isTimerRunning = true
     }
     
+    var totalFocusTime = 0
     
     // MARK: Update the time
     @objc func updateTimer() {
@@ -150,9 +151,25 @@ class ViewController: UIViewController {
             
             // write the focus time into firebase database
             ref = Database.database().reference()
-            //ref?.child("list").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+            
+            let date = Date()
+            let calendar = Calendar.current
+            
+            let currentYear = calendar.component(.year, from: date)
+            let currentMonth = calendar.component(.month, from: date)
+            let currentDay = calendar.component(.day, from: date)
+            
+            let currentDate = String(currentYear)+String(currentMonth)+String(currentDay)
+            
             let  userID = Auth.auth().currentUser!.uid
-            self.ref?.child("users").child(userID).child("Focus").childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+            self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
+            self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+            
+            totalFocusTime += maxCount/60
+            
+            self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
+            
+            
             
             // Send an inner alert to inform time is up
             createAlert(title: "Close your eyes and take a break!", message: "You've finished!")
@@ -240,6 +257,16 @@ class ViewController: UIViewController {
     func createAlert1(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let currentYear = calendar.component(.year, from: date)
+        let currentMonth = calendar.component(.month, from: date)
+        let currentDay = calendar.component(.day, from: date)
+        
+        let currentDate = String(currentYear)+String(currentMonth)+String(currentDay)
+        
+        
         alert.addAction(UIAlertAction(title: "Keep it", style: UIAlertActionStyle.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)
             
             // keep time data
@@ -247,9 +274,8 @@ class ViewController: UIViewController {
             self.minute3 = Calendar.current.component(.minute, from: Date())
             
             self.ref = Database.database().reference()
-            //self.ref?.child("list").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
             let  userID = Auth.auth().currentUser!.uid
-            self.ref?.child("users").child(userID).child("Focus").childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
+            self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().setValue("\(self.hour1):\(self.minute1)-\(self.hour3):\(self.minute3) \((self.maxCount-self.seconds)/60) min")
             
             self.seconds = 1500
             self.maxCount = 1500
@@ -289,8 +315,6 @@ class ViewController: UIViewController {
         resetButton.isHidden = true
         
         createDatePicker()
-        
-        //oProgressView2.setProgress(newAngleValue1, animated: true)
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
        

@@ -163,8 +163,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="9Th-bN-ihd"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-4T-CYg">
-                                <rect key="frame" x="14" y="122" width="363" height="30"/>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18000" minValue="0.0" maxValue="86400" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-4T-CYg">
+                                <rect key="frame" x="14" y="124" width="348" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
                         </subviews>
@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PG-Q1-OQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-513" y="107"/>
+            <point key="canvasLocation" x="-513.04347826086962" y="106.79347826086958"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -323,6 +323,7 @@
         <image name="start.png" width="447" height="135"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9Th-bN-ihd"/>
         <segue reference="5js-JY-04u"/>
     </inferredMetricsTieBreakers>
 </document>
