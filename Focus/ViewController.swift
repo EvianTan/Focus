@@ -63,10 +63,8 @@ class ViewController: UIViewController {
     }
     
     @objc func donePressed() {
-        //timeField.backgroundColor = UIColor.clear
         seconds = Int(picker.countDownDuration)
         timeField.text = timeString(time: TimeInterval(seconds))
-        //timeField.textColor = UIColor.black
         self.view.endEditing(true)
         
         maxCount = seconds
@@ -93,15 +91,12 @@ class ViewController: UIViewController {
             
             runTimer()
             isTimerRunning = true
-            //self.startButton.setTitle("pause", for: .normal)
             self.startButton.setImage(UIImage(named: "pause.png"), for: .normal)
             timeField.isUserInteractionEnabled = false
             resetButton.isHidden = true
         } else {
             timer.invalidate()
-            //cicularProgressView.pauseAnimation()
             isTimerRunning = false
-            //self.startButton.setTitle("start", for: .normal)
             self.startButton.setImage(UIImage(named: "start.png"), for: .normal)
             timeField.isUserInteractionEnabled = true
             resetButton.isHidden = false
@@ -113,17 +108,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBAction func resetButtonTapped(_ sender: UIButton) {
         createAlert1(title: "Alert", message: "Do you want to keep the data?")
-        //timer.invalidate()
-        /***
-        seconds = 1500
-        maxCount = 1500
-        timeField.text = timeString(time: TimeInterval(seconds))
-        
-        isTimerRunning = false
-        
-        newAngleValue1 = 0
-        oProgressView2.setProgress(0, animated: true)
-         ***/
         status = 0
     }
     
@@ -162,12 +146,24 @@ class ViewController: UIViewController {
             let currentDate = String(currentYear)+String(currentMonth)+String(currentDay)
             
             let  userID = Auth.auth().currentUser!.uid
-            self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
-            self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().setValue("\(hour1):\(minute1)-\(hour2):\(minute2) \(maxCount/60) min")
+           // self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
+            self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().setValue("\(hour1):\(minute1),\(hour2):\(minute2),\(maxCount/60)")
             
-            totalFocusTime += maxCount/60
+           // self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().child("startTime").setValue("\(hour1):\(minute1)")
             
-            self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
+            //self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().child("endTime").setValue("\(hour2):\(minute2)")
+            
+           // self.ref?.child("users").child(userID).child("Focus").child(currentDate).childByAutoId().child("focusTime").setValue("\(maxCount/60) min")
+            
+            
+            
+            
+            
+            
+            
+            //totalFocusTime += maxCount/60
+            
+            //self.ref?.child("users").child(userID).child("Focus").child(currentDate).child("totalFocusTime").setValue(totalFocusTime)
             
             
             
