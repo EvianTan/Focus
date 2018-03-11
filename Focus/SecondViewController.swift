@@ -115,7 +115,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //print (self.totalCount)
         
         self.view.backgroundColor = UIColor(red: 115/255.0, green: 140/255.0, blue: 199/255.0, alpha: 1)
-        uiSlider.value = Float(currentHour)
+        uiSlider.value = Float(currentHour*60+currentMinute)
+        //uiSlider.maximumTrackTintColor = UIColor.white
+        //uiSlider.minimumTrackTintColor = UIColor.white
+        
         uiSlider.maximumTrackTintColor = UIColor(red: 115/255.0, green: 140/255.0, blue: 199/255.0, alpha: 1)
         uiSlider.minimumTrackTintColor = UIColor(red: 115/255.0, green: 140/255.0, blue: 199/255.0, alpha: 1)
         uiSlider.setThumbImage(UIImage(named: "focus_pin.png"), for: .normal)

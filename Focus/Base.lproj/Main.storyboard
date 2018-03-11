@@ -151,23 +151,19 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lmk-r5-OXy" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="189" width="374" height="54"/>
+                                <rect key="frame" x="21" y="194" width="374" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-4T-CYg">
-                                <rect key="frame" x="18" y="151" width="378" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00x-MT-Jqq">
-                                <rect key="frame" x="328" y="113" width="66" height="30"/>
+                                <rect key="frame" x="328" y="71" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rF-ZI-MfH">
-                                <rect key="frame" x="20" y="113" width="42" height="30"/>
+                                <rect key="frame" x="20" y="71" width="42" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Focus">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -176,6 +172,14 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="9Th-bN-ihd"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="time_bar.png" translatesAutoresizingMaskIntoConstraints="NO" id="3dD-39-Gva">
+                                <rect key="frame" x="35" y="147" width="341" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="1440" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-4T-CYg">
+                                <rect key="frame" x="19" y="109" width="378" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ncr-Fo-2Li"/>
@@ -332,6 +336,7 @@
         <image name="exit.png" width="72" height="72"/>
         <image name="loginBear.png" width="279" height="201"/>
         <image name="start.png" width="447" height="135"/>
+        <image name="time_bar.png" width="305" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9Th-bN-ihd"/>

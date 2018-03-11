@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180394782002D97800A6EA2A /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180394772002D97800A6EA2A /* ThirdViewController.swift */; };
+		180FC6ED2055E73900363912 /* time_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 180FC6EC2055E73800363912 /* time_bar.png */; };
 		182798552054A46300F0C068 /* focus_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 182798542054A46300F0C068 /* focus_pin.png */; };
 		182FF10C204355BD00B65B66 /* loginBear.png in Resources */ = {isa = PBXBuildFile; fileRef = 182FF10B204355BC00B65B66 /* loginBear.png */; };
 		182FF114204362FE00B65B66 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF113204362FD00B65B66 /* UnderlinedTextField.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		180394772002D97800A6EA2A /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		180FC6EC2055E73800363912 /* time_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_bar.png; sourceTree = "<group>"; };
 		182798542054A46300F0C068 /* focus_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = focus_pin.png; sourceTree = "<group>"; };
 		182FF10B204355BC00B65B66 /* loginBear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBear.png; sourceTree = "<group>"; };
 		182FF113204362FD00B65B66 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				182798542054A46300F0C068 /* focus_pin.png */,
 				18A6C8B02030DF8A008C73C6 /* backgroundBear.png */,
 				182FF10B204355BC00B65B66 /* loginBear.png */,
+				180FC6EC2055E73800363912 /* time_bar.png */,
 				18557AC31FB79380008BBC70 /* KDCircularProgress.swift */,
 				18FCD79E1FB7EDBB00C585A1 /* OProgressView2.swift */,
 				182FF113204362FD00B65B66 /* UnderlinedTextField.swift */,
@@ -196,6 +199,7 @@
 			files = (
 				18359628203A4D3A0014B84D /* exit.png in Resources */,
 				18BC6A8C1FAEAC3A00FB6C38 /* silence.mp3 in Resources */,
+				180FC6ED2055E73900363912 /* time_bar.png in Resources */,
 				182FF10C204355BD00B65B66 /* loginBear.png in Resources */,
 				18A6C8AF2030D0D2008C73C6 /* pause.png in Resources */,
 				18A8EF491FC110CA000DDC89 /* GoogleService-Info.plist in Resources */,
